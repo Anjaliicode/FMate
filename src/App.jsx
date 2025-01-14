@@ -4,6 +4,7 @@ import EmailVerificationPage from "./components/EmailVerificationPage";
 import FlatListingsPage from "./components/FlatListing";  
 import VerificationCodePage from "./components/VerificationCodePage";  
 import RoomRequirementForm from './components/RoomRequirement';
+
 import './App.css'
 
 function App() {  
@@ -14,7 +15,8 @@ function App() {
         <Route path="/emailverification" element={<EmailVerificationPage />} />  
         <Route path="/verificationcode" element={<VerificationCodePage />} />  
         <Route path="/flatlistings" element={<FlatListingsPage />} />
-        <Route path="/roomrequirements" element={<RoomRequirementForm/>} />  
+        <Route path="/roomrequirements" element={<RoomRequirementForm/>} /> 
+        
       </Routes>  
     </BrowserRouter>  
   );  

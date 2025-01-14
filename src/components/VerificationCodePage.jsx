@@ -14,20 +14,19 @@ const VerificationCodePage = () => {
       sx={{
         height: "100vh",
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         backgroundColor: "#ffffff",
-        overflow: "hidden",
-        // border: "2px solid black",
+        overflow: {md:"hidden"},
       }}
     >
       {/* Left Section with Logo and Image */}
       <Box
         sx={{
-          flex: { xs: "1", md: "0.5" },
-          display: { xs: "none", md: "flex" },
+          flex: { xs: "0 0 auto", md: "0.5" },
+          display: "flex",
           flexDirection: "column",
-          // p: 4,
           position: "relative",
-          border: "2px solid black",
+          height: { xs: "35vh", md: "100vh" },
         }}
       >
         <Typography
@@ -35,7 +34,7 @@ const VerificationCodePage = () => {
           sx={{
             fontFamily: "Poppins",
             fontWeight: 500,
-            fontSize: "40px",
+            fontSize: { xs: "32px", md: "40px" },
             lineHeight: "60px",
             color: "#082E66",
             p: 4,
@@ -47,13 +46,12 @@ const VerificationCodePage = () => {
         <Box
           sx={{
             display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "flex-end",
+            alignItems: { xs: "center", md: "flex-end" },
+            justifyContent: { xs: "center", md: "flex-end" },
             height: "100%",
             width: "100%",
             position: "relative",
-            // top:"60px",
-            right: "70px",
+            right: { xs: 0, md: "70px" },
           }}
         >
           <img
@@ -61,8 +59,8 @@ const VerificationCodePage = () => {
             alt="Students waving"
             style={{
               width: "90%",
-              maxHeight: "100vh",
-              objectFit: "cover",
+              maxHeight: "100%",
+              objectFit: "contain",
             }}
           />
         </Box>
@@ -74,10 +72,9 @@ const VerificationCodePage = () => {
           flex: { xs: "1", md: "1" },
           display: "flex",
           flexDirection: "column",
-
-          pt: 14,
-          pl: 28,
-
+          pt: { xs: 24, md: 20 },
+          pl: { xs: 4, md: 28 },
+          pr: { xs: 4, md: 0 },
           maxWidth: { xs: "100%", md: "900px" },
         }}
       >
@@ -86,7 +83,7 @@ const VerificationCodePage = () => {
           sx={{
             fontFamily: "Poppins",
             fontWeight: 400,
-            fontSize: "36px",
+            fontSize: { xs: "28px", md: "36px" },
             lineHeight: "54px",
             mb: 1,
           }}
@@ -112,29 +109,32 @@ const VerificationCodePage = () => {
         <Box
           sx={{
             display: "flex",
-            gap: 2,
+            gap: 1,
             mb: 4,
-            justifyContent: "space-between",
+            justifyContent: { xs: "space-between", md: "flex-start" },
           }}
         >
-          <input
-            type="text"
-            style={{
-              width: "48px",
-              height: "48px",
-              textAlign: "center",
-              fontSize: "24px",
-              border: "1px solid #E2E8F0",
-              borderRadius: "8px",
-              outline: "none",
-            }}
-            maxLength={1}
-          />
+          {Array.from({ length: 6 }, (_, index) => (
+            <input
+              key={index}
+              type="text"
+              style={{
+                width: "48px",
+                height: "48px",
+                textAlign: "center",
+                fontSize: "24px",
+                border: "1px solid #E2E8F0",
+                borderRadius: "8px",
+                outline: "none",
+              }}
+              maxLength={1}
+            />
+          ))}
         </Box>
+
         <Box
           sx={{
             display: "flex",
-            //  py:1,
             gap: 1,
           }}
         >
@@ -152,9 +152,9 @@ const VerificationCodePage = () => {
             sx={{
               fontFamily: "Poppins",
               fontSize: "14px",
-              color: "#082E66",
+              color: "#010C24",
               textDecoration: "none",
-              fontWeight: 500,
+              fontWeight: 600,
               "&:hover": {
                 textDecoration: "underline",
               },
@@ -166,8 +166,6 @@ const VerificationCodePage = () => {
 
         <Button
           variant="contained"
-          width="50%"
-          // fullWidth
           onClick={flatlisthandle}
           sx={{
             backgroundColor: "#010C24",
@@ -180,7 +178,7 @@ const VerificationCodePage = () => {
             fontWeight: 500,
             fontSize: "16px",
             mb: 3,
-            width: "50%",
+            width: { xs: "100%", md: "30%" },
             "&:hover": {
               backgroundColor: "#2A2A43",
             },
