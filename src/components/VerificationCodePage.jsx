@@ -83,7 +83,7 @@ const VerificationCodePage = () => {
           sx={{
             fontFamily: "Poppins",
             fontWeight: 400,
-            fontSize: { xs: "28px", md: "36px" },
+            fontSize: { xs: "32px", md: "36px" },
             lineHeight: "54px",
             mb: 1,
           }}

@@ -7,7 +7,7 @@ const VerificationCodePage = () => {
   const navigate = useNavigate();
   
   const handleVerify = () => {
-    navigate("/verification");
+    navigate("/verificationcode");
   };
 
   return (
@@ -77,7 +77,7 @@ const VerificationCodePage = () => {
           justifyContent: {xs:"center",md:"start"},
           alignItems: "center",
           px: { xs: 3, md: 4 },
-          py: { xs: 13, md: 14 },
+          py: { xs: 16, md: 14 },
           
           maxWidth: { xs: "100%", md: "50%" },
         }}
@@ -96,7 +96,7 @@ const VerificationCodePage = () => {
             sx={{
               fontFamily: "Poppins",
               fontWeight: 500,
-              fontSize: { xs: "24px", md: "35px" },
+              fontSize: { xs: "33px", md: "35px" },
               textAlign: "center",
               mb: 1,
             }}

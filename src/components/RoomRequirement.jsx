@@ -13,39 +13,12 @@ import {
 } from '@mui/material';
 
 const RoomRequirementForm = () => {
-  const [lookingFor, setLookingFor] = useState('any');
-  const [occupancy, setOccupancy] = useState('single');
-  const [isPG, setIsPG] = useState(false);
-  const [isTeamup, setIsTeamup] = useState(false);
-  const [isPublic, setIsPublic] = useState(true);
+  
+ 
 
-  const highlights = [
-    'Working 9-5 hrs',
-    'College student',
-    '25+ age',
-    '35+ age',
-    'Working night shifts',
-    'Have 2 wheeler',
-    'Have 4 wheeler',
-    'Will shift immediately',
-    'Pet\'s park',
-    'Need hot bunking',
-    'Pure vegetarian'
-  ];
 
-  const [selectedHighlights, setSelectedHighlights] = useState([]);
-
-  const handleHighlightToggle = (highlight) => {
-    setSelectedHighlights(prev => 
-      prev.includes(highlight) 
-        ? prev.filter(h => h !== highlight)
-        : [...prev, highlight]
-    );
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission
+  const handleSubmit = () => {
+  
     console.log('Form submitted');
   };
 
@@ -82,9 +55,7 @@ const RoomRequirementForm = () => {
               Looking For
             </Typography>
             <ToggleButtonGroup
-              value={lookingFor}
-              exclusive
-              onChange={(e, value) => value && setLookingFor(value)}
+             
               sx={{ mb: 2 }}
             >
               <ToggleButton value="male">Male</ToggleButton>
@@ -99,9 +70,7 @@ const RoomRequirementForm = () => {
               Occupancy
             </Typography>
             <ToggleButtonGroup
-              value={occupancy}
-              exclusive
-              onChange={(e, value) => value && setOccupancy(value)}
+            
               sx={{ mb: 2 }}
             >
               <ToggleButton value="single">Single</ToggleButton>
@@ -116,17 +85,9 @@ const RoomRequirementForm = () => {
               Choose Highlights for your property
             </Typography>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-              {highlights.map((highlight) => (
-                <ToggleButton
-                  key={highlight}
-                  selected={selectedHighlights.includes(highlight)}
-                  onChange={() => handleHighlightToggle(highlight)}
-                  value={highlight}
-                  size="small"
-                >
-                  {highlight}
-                </ToggleButton>
-              ))}
+             
+            
+              
             </Box>
           </Box>
 
@@ -137,9 +98,7 @@ const RoomRequirementForm = () => {
                 Are you interested in PG bed?
               </Typography>
               <ToggleButtonGroup
-                value={isPG ? 'yes' : 'no'}
-                exclusive
-                onChange={(e, value) => setIsPG(value === 'yes')}
+                
               >
                 <ToggleButton value="yes">Yes</ToggleButton>
                 <ToggleButton value="no">No</ToggleButton>
@@ -151,9 +110,7 @@ const RoomRequirementForm = () => {
                 Are you interested in making Teamup?
               </Typography>
               <ToggleButtonGroup
-                value={isTeamup ? 'yes' : 'no'}
-                exclusive
-                onChange={(e, value) => setIsTeamup(value === 'yes')}
+               
               >
                 <ToggleButton value="yes">Yes</ToggleButton>
                 <ToggleButton value="no">No</ToggleButton>
@@ -168,15 +125,13 @@ const RoomRequirementForm = () => {
             </Typography>
             <Stack direction="row" spacing={2}>
               <Button
-                variant={isPublic ? "contained" : "outlined"}
-                onClick={() => setIsPublic(true)}
+               
                 color="primary"
               >
                 Yes! make it public
               </Button>
               <Button
-                variant={!isPublic ? "contained" : "outlined"}
-                onClick={() => setIsPublic(false)}
+             
                 color="primary"
               >
                 No! make it private
@@ -192,7 +147,7 @@ const RoomRequirementForm = () => {
             fullWidth
             label="Description"
             multiline
-            rows={4}
+          
             placeholder="I am looking for a room with roommate"
             variant="outlined"
           />

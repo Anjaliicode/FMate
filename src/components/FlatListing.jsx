@@ -4,8 +4,13 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import flat1 from "../assets/flat1.png";
 import flat2 from "../assets/flat2.png";
 import flat3 from "../assets/flat3.png";
+import { useNavigate } from 'react-router-dom';
 
 const FlatListingsPage = () => {
+  const navigate = useNavigate();
+  const handleRequirement = () => {
+    navigate("/");
+  }
   const listings = [
     {
       id: 1,
@@ -36,27 +41,31 @@ const FlatListingsPage = () => {
       availableFrom: '8th January',
       image: flat3,
       verified: true
-    }
+    },
+    
   ];
 
   return (
-    <Box sx={{ p: { xs: 2, md: 2 }, backgroundColor: "#fff", minHeight: "100vh" }}>
+    <Box sx={{ p: { xs: 2, md: 4 }, backgroundColor: "#fff", minHeight: "100vh" }}>
       {/* Header */}
       <Box sx={{ 
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center',
-        mb: 4,
-        maxWidth: "1200px",
+        mb: { xs: 3, md: 4 },
+        maxWidth: "1400px",
         mx: "auto",
-        width: "100%"
+        width: "100%",
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: { xs: 2, sm: 0 }
       }}>
         <Typography
           sx={{
-            fontFamily: 'Poppins',
-            fontWeight: 600,
-            fontSize: "24px",
-            color: '#082E66'
+            fontFamily: "Poppins",
+            fontWeight: 500,
+            fontSize: { xs: "32px", md: "40px" },
+            lineHeight: { xs: "48px", md: "60px" },
+            color: "#082E66",
           }}
         >
           FMate
@@ -72,6 +81,8 @@ const FlatListingsPage = () => {
             fontSize: '14px',
             px: 3,
             py: 1,
+            onClick:{handleRequirement},
+            width: { xs: '100%', sm: 'auto' },
             '&:hover': { backgroundColor: '#2A2A43' }
           }}
         >
@@ -80,33 +91,44 @@ const FlatListingsPage = () => {
       </Box>
 
       {/* Content Container */}
-      <Box sx={{ maxWidth: "1200px", mx: "auto", width: "100%" }}>
+      <Box sx={{ maxWidth: "1400px", mx: "auto", width: "100%" }}>
         {/* Title */}
         <Typography
           variant="h1"
           sx={{
             fontFamily: 'Poppins',
             fontWeight: 500,
-            fontSize: '48px',
-            mb: 4,
-            color: '#000'
+            fontSize: { xs: '32px', md: '68px' },
+            mb: { xs: 3, md: 8 },
+            color: '#000',
+            textAlign: 'center'
           }}
         >
           Flat Listings
         </Typography>
 
         {/* Filter Chips */}
-        <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          gap: 1.5, 
+          mb: { xs: 3, md: 4 },
+          overflow: 'auto',
+          pb: 1,
+          flexWrap:'wrap',
+          '::-webkit-scrollbar': { display: 'none' }
+        }}>
           {['All Posts', 'Flat Required', 'Flatmate Required', 'Location'].map((filter) => (
             <Chip
               key={filter}
               label={filter}
               sx={{
                 fontFamily: 'Poppins',
-                backgroundColor: filter === 'All Posts' ? '#E2E8F0' : 'transparent',
-                border: '1px solid #E2E8F0',
+                fontWeight: 600,  
+                backgroundColor: filter === 'All Posts' ? '#DEDEDE' : 'transparent',
+                border: '2px solid #181819',
                 borderRadius: '20px',
                 px: 1,
+                whiteSpace: 'nowrap',
                 '&:hover': { backgroundColor: '#E2E8F0' }
               }}
               clickable
@@ -116,16 +138,20 @@ const FlatListingsPage = () => {
 
         {/* Listings */}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-          {listings.map((listing, index) => (
+          {listings.map((listing) => (
             <Box key={listing.id}>
               <Box sx={{ 
                 display: 'flex',
+               
+                flexDirection: { xs: 'column', md: 'row' },
                 gap: 3,
                 backgroundColor: 'white',
+                mb: 5,
+                // borderBottom:"2px dotted black",
               }}>
                 {/* Image Container */}
                 <Box sx={{ 
-                  width: "70%",
+                  width: { xs: "100%", md: "60%" },
                   position: 'relative',
                   borderRadius: '12px',
                   overflow: 'hidden'
@@ -143,13 +169,13 @@ const FlatListingsPage = () => {
                     <Box
                       sx={{
                         position: 'absolute',
-                        top: '12px',
+                        top: '4px',
                         right: '12px',
                         backgroundColor: '#4CAF50',
                         color: 'white',
                         fontSize: '12px',
-                        py: 0.5,
-                        px: 1.5,
+                        py: 1,
+                        px: 1.8,
                         borderRadius: '4px',
                         fontFamily: 'Poppins',
                       }}
@@ -164,15 +190,16 @@ const FlatListingsPage = () => {
                   flex: 1,
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center',
-                  gap: 1
+                  // justifyContent: 'center',
+                  // gap: 1,
+                  pl: { xs: 2, md: 8}
                 }}>
                   <Typography
                     sx={{
                       fontFamily: 'Poppins',
-                      fontWeight: 500,
-                      fontSize: '24px',
-                      mb: 0.5
+                      fontWeight: 600,
+                      fontSize: { xs: '20px', md: '32px' },
+                      // mb: 0.5
                     }}
                   >
                     {listing.name}
@@ -181,21 +208,22 @@ const FlatListingsPage = () => {
                   <Typography
                     sx={{
                       fontFamily: 'Poppins',
+                      fontWeight:"500",
                       fontSize: '14px',
-                      color: '#666',
-                      mb: 1
+                      // color: '#666',
+                      mb: 4
                     }}
                   >
                     {listing.college}
                   </Typography>
 
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                    <LocationOnIcon sx={{ color: '#666', fontSize: '20px' }} />
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
+                    <LocationOnIcon sx={{  fontSize: '30px' }} />
                     <Typography
                       sx={{
                         fontFamily: 'Poppins',
                         fontSize: '14px',
-                        color: '#666'
+                        
                       }}
                     >
                       {listing.location}
@@ -206,7 +234,7 @@ const FlatListingsPage = () => {
                     sx={{
                       fontFamily: 'Poppins',
                       fontSize: '14px',
-                      color: '#666'
+                     pl:5,
                     }}
                   >
                     Rent: {listing.rent}
@@ -216,23 +244,25 @@ const FlatListingsPage = () => {
                     sx={{
                       fontFamily: 'Poppins',
                       fontSize: '14px',
-                      color: '#666',
-                      mb: 2
+                     pl:5,
+                      mb: 8
                     }}
                   >
                     Available From: {listing.availableFrom}
                   </Typography>
 
                   <Button
-                    variant="outlined"
+                    // variant="outlined"
                     sx={{
                       borderColor: '#E2E8F0',
                       color: '#000',
                       textTransform: 'none',
                       fontFamily: 'Poppins',
                       borderRadius: '20px',
-                      width: 'fit-content',
+                      width: { xs: '100%', md: 'fit-content' },
                       px: 3,
+                      backgroundColor: "#DEDEDE",
+                      border:"2px solid #181819",
                       '&:hover': {
                         borderColor: '#CBD5E0',
                         backgroundColor: '#f8f9fa'
@@ -243,7 +273,6 @@ const FlatListingsPage = () => {
                   </Button>
                 </Box>
               </Box>
-              
             </Box>
           ))}
         </Box>

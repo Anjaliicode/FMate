@@ -16,6 +16,7 @@ function App() {
         <Route path="/verificationcode" element={<VerificationCodePage />} />  
         <Route path="/flatlistings" element={<FlatListingsPage />} />
         <Route path="/roomrequirements" element={<RoomRequirementForm/>} /> 
+        <Route path="/roomrequirement" element={<RoomRequirementForm />} />
         
       </Routes>  
     </BrowserRouter>  
