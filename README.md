@@ -1,6 +1,6 @@
 # FlatMate - Find Your Perfect College Roommate
 
-FlatMate is a web application designed to help college students find compatible roommates and accommodations near their educational institutions. The platform simplifies the process of finding both flatmates and available rooms, making the college housing search easier and more efficient.
+FlatMate is a web application designed to help find compatible roommates. The platform simplifies the process of finding both flatmates and available rooms, making the  housing search easier and more efficient.
 
 ## Features
 
