@@ -76,8 +76,3 @@ FlatMate is a web application designed to help college students find compatible 
 
 
 
-## Acknowledgments
-
-- Material-UI for the component library
-- React team for the amazing framework
-- All contributors who have helped shape this project
