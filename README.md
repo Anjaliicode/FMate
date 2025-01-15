@@ -1,8 +1,13 @@
 # FlatMate - Find Your Perfect College Roommate
 
+<<<<<<< HEAD
 FlatMate is a web application designed to help college students find compatible roommates and accommodations near their educational institutions. The platform simplifies the process of finding both flatmates and available rooms, making the college housing search easier and more efficient.
 # CkeckOut it here-
 [Live-link](https://fmate.netlify.app/)
+=======
+FlatMate is a web application designed to help find compatible roommates. The platform simplifies the process of finding both flatmates and available rooms, making the  housing search easier and more efficient.
+
+>>>>>>> 1df125ed1e6671dbbbbafd37c01cefa0ba91f491
 ## Features
 
 ### For Students Looking for Roommates
@@ -77,8 +82,3 @@ FlatMate is a web application designed to help college students find compatible 
 
 
 
-## Acknowledgments
-
-- Material-UI for the component library
-- React team for the amazing framework
-- All contributors who have helped shape this project
