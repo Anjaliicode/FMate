@@ -11,6 +11,15 @@ const LandingPage = () => {
   function emailhandle() {
     navigate("/emailverification");
   }
+  function flatListinghandle() {
+    navigate("/flatlistings");
+  }
+  function selectionHandle() {
+    navigate("/selection");
+  }
+  
+  // In the button:
+  
   return (
     <Box component="main">
       {/* Hero Section */}
@@ -108,6 +117,7 @@ const LandingPage = () => {
           >
             <Button
               variant="contained"
+              onClick={flatListinghandle}
               sx={{
                 borderRadius: "30px",
                 background: "#164DCD",
@@ -120,6 +130,7 @@ const LandingPage = () => {
             </Button>
             <Button
               variant="contained"
+              onClick={selectionHandle}
               sx={{
                 backgroundColor: "#0A0A23",
                 borderRadius: "30px",
