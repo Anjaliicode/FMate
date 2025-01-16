@@ -35,6 +35,7 @@ const SelectionPage = () => {
           left: { xs: "1rem", md: "2rem" },
         }}
       >
+          <a href="/" style={{ textDecoration: 'none' }}>
         <Typography
           variant="h6"
           sx={{
@@ -47,6 +48,7 @@ const SelectionPage = () => {
         >
           FMate
         </Typography>
+        </a>  
       </Box>
 
       {/* Main Content */}

@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 const FlatListingsPage = () => {
   const navigate = useNavigate();
-  const handleRequirement = () => {
-    navigate("/");
+  const handleLogin= () => {
+    navigate("/emailverification");
   }
   const listings = [
     {
@@ -73,6 +73,7 @@ const FlatListingsPage = () => {
         
         <Button
           variant="contained"
+          onClick={handleLogin}
           sx={{
             backgroundColor: '#0A0A23',
             borderRadius: '20px',
@@ -81,7 +82,7 @@ const FlatListingsPage = () => {
             fontSize: '14px',
             px: 3,
             py: 1,
-            onClick:{handleRequirement},
+            // onClick:{handleLogin},
             width: { xs: '100%', sm: 'auto' },
             '&:hover': { backgroundColor: '#2A2A43' }
           }}
@@ -93,6 +94,7 @@ const FlatListingsPage = () => {
       {/* Content Container */}
       <Box sx={{ maxWidth: "1400px", mx: "auto", width: "100%" }}>
         {/* Title */}
+        <a href="/" style={{ textDecoration: 'none' }}>
         <Typography
           variant="h1"
           sx={{
@@ -106,7 +108,7 @@ const FlatListingsPage = () => {
         >
           Flat Listings
         </Typography>
-
+        </a>
         {/* Filter Chips */}
         <Box sx={{ 
           display: 'flex', 

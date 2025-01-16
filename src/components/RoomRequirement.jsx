@@ -178,6 +178,7 @@ const RoomRequirementForm = () => {
               mb: { xs: 0, md: 0 }
             }}
           >
+              <a href="/" style={{ textDecoration: 'none' }}>
             <Typography
               variant="h6"
               sx={{
@@ -190,6 +191,7 @@ const RoomRequirementForm = () => {
             >
               FMate
             </Typography>
+            </a>
           </Box>
           <Box sx={{ ml: 'auto' }}>
             <IconButton 

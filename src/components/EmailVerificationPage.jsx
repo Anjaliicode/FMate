@@ -30,6 +30,7 @@ const VerificationCodePage = () => {
           height: { xs: "45vh", md: "100vh" },
         }}
       >
+          <a href="/" style={{ textDecoration: 'none' }}>
         <Typography
           variant="h6"
           sx={{
@@ -43,7 +44,7 @@ const VerificationCodePage = () => {
         >
           FMate
         </Typography>
-
+</a>
         <Box
           sx={{
             display: "flex",
