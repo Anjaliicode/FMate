@@ -5,6 +5,8 @@ import FlatListingsPage from "./components/FlatListing";
 import VerificationCodePage from "./components/VerificationCodePage";
 import RoomRequirementForm from "./components/RoomRequirement";
 import SelectionPage from "./components/SelectionPage";
+// import FindFlatmate from "./components/FindFlatmate";
+// import FindFlat from "./components/FindFlat";
 
 import "./App.css";
 
@@ -17,7 +19,7 @@ function App() {
         <Route path="/verificationcode" element={<VerificationCodePage />} />
         <Route path="/flatlistings" element={<FlatListingsPage />} />
         <Route path="/roomrequirements" element={<RoomRequirementForm />} />
-        <Route path="/roomrequirement" element={<RoomRequirementForm />} />
+        {/* <Route path="/roomrequirement" element={<RoomRequirementForm />} /> */}
         <Route path="/selection" element={<SelectionPage />} />
 {/* <Route path="/find-flatmate" element={<FindFlatmate />} /> */}
 {/* <Route path="/find-flat" element={<FindFlat />} /> */}

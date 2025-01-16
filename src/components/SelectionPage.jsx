@@ -9,11 +9,11 @@ const SelectionPage = () => {
   const navigate = useNavigate();
 
   const handleFlatmateSearch = () => {
-    navigate("/find-flatmate");
+    navigate("/roomrequirements");
   };
 
   const handleFlatSearch = () => {
-    navigate("/find-flat");
+    navigate("/roomrequirements");
   };
 
   return (
@@ -252,6 +252,7 @@ const SelectionPage = () => {
               </Typography>
               <Button
                 variant="contained"
+                onClick={handleFlatSearch}
                 endIcon={<ArrowForwardOutlined />}
                 sx={{
                   backgroundColor: "#0A0A23",
