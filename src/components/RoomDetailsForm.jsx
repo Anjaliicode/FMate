@@ -22,8 +22,13 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
-import LocalHotelOutlinedIcon from "@mui/icons-material/LocalHotelOutlined";
-import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
+import WifiIcon from "@mui/icons-material/Wifi";
+import KitchenIcon from "@mui/icons-material/Kitchen";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+import LocalLaundryServiceIcon from "@mui/icons-material/LocalLaundryService";
+import TvIcon from "@mui/icons-material/Tv";
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
+import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 
 const validationSchema = Yup.object().shape({
@@ -35,13 +40,16 @@ const validationSchema = Yup.object().shape({
   lookingFor: Yup.string().required("Please select who you are looking for"),
   occupancy: Yup.string().required("Please select occupancy type"),
   highlights: Yup.array().min(1, "Please select at least one highlight"),
-  isPG: Yup.boolean().nullable().required("Please select PG preference"),
-  isTeams: Yup.boolean().nullable().required("Please select Teams preference"),
-  isPhoneVisible: Yup.boolean().nullable().required("Please select visibility preference"),
+  isPhoneVisible: Yup.boolean()
+    .nullable()
+    .required("Please select visibility preference"),
   description: Yup.string()
     .required("Description is required")
     .min(20, "Description should be at least 20 characters"),
+  amenities: Yup.array().min(1, "Please select at least one amenity"),
+  photos: Yup.array().min(1, "Please upload at least one photo"),
 });
+
 const ErrorMessage = styled("p")({
   color: "#d32f2f",
   fontSize: "0.75rem",
@@ -49,16 +57,16 @@ const ErrorMessage = styled("p")({
 });
 
 const StyledAppBar = styled(AppBar)({
-  backgroundColor: 'white',
-  boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+  backgroundColor: "white",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
 });
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   maxWidth: 1000,
-  margin: '24px auto',
+  margin: "24px auto",
   padding: theme.spacing(4),
-  borderRadius: '16px',
-  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+  borderRadius: "16px",
+  boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
 }));
 
 const CustomTextField = styled(TextField)({
@@ -126,10 +134,11 @@ const FormSection = styled(Box)({
   marginBottom: "24px",
 });
 
-const RoomRequirementForm = () => {
+const RoomDetailsForm = () => {
   const navigate = useNavigate();
   const handleClose = () => {
-    navigate('/selection');}
+    navigate("/selection");
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -138,10 +147,10 @@ const RoomRequirementForm = () => {
       lookingFor: "",
       occupancy: "",
       highlights: [],
-      isPG: null,
-      isTeams: null,
       isPhoneVisible: null,
       description: "",
+      amenities: [],
+      photos: [],
     },
     validationSchema,
     onSubmit: (values) => {
@@ -154,53 +163,77 @@ const RoomRequirementForm = () => {
   };
 
   const highlights = [
-    "Working full time",
-    "College student",
-    "25+ age",
-    "<25 age",
-    "Working night shifts",
-    "Have 2 wheeler",
-    "Have 4 wheeler",
-    "Will shift immediately",
-    "Have pets",
-    "Need no furnishing",
-    "Pure vegetarian",
+    "Attached washroom",
+    "Market nearby",
+    "Attached balcony",
+    "Close to metro station",
+    "Public transport nearby",
+    "Gated society",
+    "No landlord",
+    "Newly built",
+    "Separate washroom",
+    "House keeping",
+    "24/7 water",
+    "Park nearby",
   ];
+
+  const amenities = [
+    { icon: <TvIcon />, label: "TV" },
+    { icon: <KitchenIcon />, label: "Fridge" },
+    { icon: <LocalDiningIcon />, label: "Kitchen" },
+    { icon: <WifiIcon />, label: "Wifi" },
+    { icon: <LocalLaundryServiceIcon />, label: "Machine" },
+    { icon: <AcUnitIcon />, label: "AC" },
+    { icon: <LocalLaundryServiceIcon />, label: "PowerBackup" },
+    { icon: <LocalDiningIcon />, label: "Cook" },
+    { icon: <DirectionsBikeIcon />, label: "Parking" },
+  ];
+
+  const handlePhotoUpload = (event) => {
+    const files = Array.from(event.target.files);
+    formik.setFieldValue("photos", files);
+  };
+
   return (
     <>
       <StyledAppBar position="sticky">
-        <Toolbar sx={{ justifyContent: 'space-between', minHeight: { xs: '70px', md: '80px' } }}>
+        <Toolbar
+          sx={{
+            justifyContent: "space-between",
+            minHeight: { xs: "70px", md: "80px" },
+          }}
+        >
           <Box
             sx={{
               position: { xs: "static", md: "absolute" },
               top: "1rem",
               left: "1rem",
-              mb: { xs: 0, md: 0 }
+              mb: { xs: 0, md: 0 },
             }}
           >
-              <a href="/" style={{ textDecoration: 'none' }}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontFamily: "Poppins",
-                fontWeight: 500,
-                fontSize: { xs: "32px", md: "40px" },
-                lineHeight: { xs: "48px", md: "60px" },
-                color: "#082E66",
-              }}
-            >
-              FMate
-            </Typography>
+            <a href="/" style={{ textDecoration: "none" }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Poppins",
+                  fontWeight: 500,
+                  fontSize: { xs: "32px", md: "40px" },
+                  lineHeight: { xs: "48px", md: "60px" },
+                  color: "#082E66",
+                }}
+              >
+                FMate
+              </Typography>
             </a>
           </Box>
-          <Box sx={{ ml: 'auto' }}>
-            <IconButton 
-              onClick={handleClose} 
-              sx={{ 
-                color: '#082E66',
-                '&:hover': {
-                  backgroundColor: 'rgba(8, 46, 102, 0.04)'
-                }
+          <Box sx={{ ml: "auto" }}>
+            <IconButton
+              onClick={handleClose}
+              sx={{
+                color: "#082E66",
+                "&:hover": {
+                  backgroundColor: "rgba(8, 46, 102, 0.04)",
+                },
               }}
             >
               <CloseIcon />
@@ -208,22 +241,19 @@ const RoomRequirementForm = () => {
           </Box>
         </Toolbar>
       </StyledAppBar>
-      <Box sx={{ bgcolor: '#fafafa', minHeight: '100vh', pt: 3, pb: 6 }}>
+      <Box sx={{ bgcolor: "#fafafa", minHeight: "100vh", pt: 3, pb: 6 }}>
         <StyledPaper elevation={0}>
-          <Typography 
-            variant="h1" 
-            align="center" 
-            sx={{ 
-              mb: 1, 
+          <Typography
+            variant="h1"
+            align="center"
+            sx={{
+              mb: 1,
               fontWeight: 600,
-              fontFamily: 'Poppins',
-              fontSize: { xs: '24px', md: '38px' },
-              // background: 'linear-gradient(45deg, #082E66, #00A676)',
-              // WebkitBackgroundClip: 'text',
-              // WebkitTextFillColor: 'transparent',
+              fontFamily: "Poppins",
+              fontSize: { xs: "24px", md: "38px" },
             }}
           >
-            Add your requirement
+            Add your room details
           </Typography>
           <Typography
             variant="body1"
@@ -238,8 +268,11 @@ const RoomRequirementForm = () => {
 
           <form onSubmit={formik.handleSubmit}>
             <Stack spacing={4}>
+              {/* Basic Details Section */}
               <FormSection>
-                <SectionTitle variant="h6">Basic Details</SectionTitle>
+                <SectionTitle variant="h6" fontWeight="500">
+                  Basic Details
+                </SectionTitle>
                 <Stack spacing={3}>
                   <Box>
                     <CustomTextField
@@ -255,7 +288,9 @@ const RoomRequirementForm = () => {
                       }}
                       {...formik.getFieldProps("location")}
                       error={showError("location")}
-                      helperText={showError("location") && formik.errors.location}
+                      helperText={
+                        showError("location") && formik.errors.location
+                      }
                     />
                   </Box>
 
@@ -280,12 +315,16 @@ const RoomRequirementForm = () => {
                 </Stack>
               </FormSection>
 
+              {/* Preferences Section */}
+
               <FormSection>
                 <SectionTitle variant="h6">Preferences</SectionTitle>
                 <Stack spacing={3}>
                   <Box>
                     <Typography variant="body2" sx={{ mb: 2, color: "#666" }}>
-                      <GroupOutlinedIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                      <GroupOutlinedIcon
+                        sx={{ mr: 1, verticalAlign: "middle" }}
+                      />
                       Looking For *
                     </Typography>
                     <Box sx={{ display: "flex", gap: 2 }}>
@@ -293,7 +332,9 @@ const RoomRequirementForm = () => {
                         <CustomButton
                           key={option}
                           selected={formik.values.lookingFor === option}
-                          onClick={() => formik.setFieldValue("lookingFor", option)}
+                          onClick={() =>
+                            formik.setFieldValue("lookingFor", option)
+                          }
                           sx={{ flex: 1 }}
                         >
                           {option}
@@ -307,7 +348,9 @@ const RoomRequirementForm = () => {
 
                   <Box>
                     <Typography variant="body2" sx={{ mb: 2, color: "#666" }}>
-                      <BedOutlinedIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                      <BedOutlinedIcon
+                        sx={{ mr: 1, verticalAlign: "middle" }}
+                      />
                       Occupancy Type *
                     </Typography>
                     <Box sx={{ display: "flex", gap: 2 }}>
@@ -315,7 +358,9 @@ const RoomRequirementForm = () => {
                         <CustomButton
                           key={option}
                           selected={formik.values.occupancy === option}
-                          onClick={() => formik.setFieldValue("occupancy", option)}
+                          onClick={() =>
+                            formik.setFieldValue("occupancy", option)
+                          }
                           sx={{ flex: 1 }}
                         >
                           {option}
@@ -329,99 +374,101 @@ const RoomRequirementForm = () => {
                 </Stack>
               </FormSection>
 
+              {/* Photo Upload Section */}
               <FormSection>
-                <SectionTitle variant="h6">Additional Details</SectionTitle>
-                <Stack spacing={3}>
-                  <Box>
-                    <Typography variant="body2" sx={{ mb: 2, color: "#666" }}>
-                      <LocalHotelOutlinedIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-                      PG Preference *
-                    </Typography>
-                    <Box sx={{ display: "flex", gap: 2 }}>
-                      <CustomButton
-                        selected={formik.values.isPG === true}
-                        onClick={() => formik.setFieldValue("isPG", true)}
-                        sx={{ flex: 1 }}
-                      >
-                        Yes
-                      </CustomButton>
-                      <CustomButton
-                        selected={formik.values.isPG === false}
-                        onClick={() => formik.setFieldValue("isPG", false)}
-                        sx={{ flex: 1 }}
-                      >
-                        No
-                      </CustomButton>
-                    </Box>
-                    {showError("isPG") && (
-                      <ErrorMessage>{formik.errors.isPG}</ErrorMessage>
-                    )}
-                  </Box>
+                <SectionTitle variant="h6">
+                  Upload 3 Photos of your room *
+                </SectionTitle>
+                <Box
+                  sx={{
+                    border: "2px dashed #E0E0E0",
+                    borderRadius: "12px",
+                    p: 6,
+                    textAlign: "center",
+                  }}
+                >
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handlePhotoUpload}
+                    style={{ display: "none" }}
+                    id="photo-upload"
+                  />
+                  <label htmlFor="photo-upload">
+                    <Button
+                      component="span"
+                      variant="outlined"
+                      sx={{
+                        color: "#00A676",
+                        borderColor: "#00A676",
+                        "&:hover": { borderColor: "#009668" },
+                      }}
+                    >
+                      Click or drag images to upload
+                    </Button>
+                  </label>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ mt: 1 }}
+                  >
+                    Max file size: 20 MB
+                  </Typography>
+                </Box>
+                {showError("photos") && (
+                  <ErrorMessage>{formik.errors.photos}</ErrorMessage>
+                )}
+              </FormSection>
+              {/* Amenities Section */}
 
-                  <Box>
-                    <Typography variant="body2" sx={{ mb: 2, color: "#666" }}>
-                      <GroupAddOutlinedIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-                      Team Formation *
-                    </Typography>
-                    <Box sx={{ display: "flex", gap: 2 }}>
-                      <CustomButton
-                        selected={formik.values.isTeams === true}
-                        onClick={() => formik.setFieldValue("isTeams", true)}
-                        sx={{ flex: 1 }}
-                      >
-                        Yes
-                      </CustomButton>
-                      <CustomButton
-                        selected={formik.values.isTeams === false}
-                        onClick={() => formik.setFieldValue("isTeams", false)}
-                        sx={{ flex: 1 }}
-                      >
-                        No
-                      </CustomButton>
-                    </Box>
-                    {showError("isTeams") && (
-                      <ErrorMessage>{formik.errors.isTeams}</ErrorMessage>
-                    )}
-                  </Box>
-
-                  <Box>
-                    <Typography variant="body2" sx={{ mb: 2, color: "#666" }}>
-                      <PhoneOutlinedIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-                      Phone Visibility *
-                    </Typography>
-                    <Box sx={{ display: "flex", gap: 2 }}>
-                      <CustomButton
-                        selected={formik.values.isPhoneVisible === true}
-                        onClick={() => formik.setFieldValue("isPhoneVisible", true)}
-                        sx={{ flex: 1 }}
-                      >
-                        Public
-                      </CustomButton>
-                      <CustomButton
-                        selected={formik.values.isPhoneVisible === false}
-                        onClick={() => formik.setFieldValue("isPhoneVisible", false)}
-                        sx={{ flex: 1 }}
-                      >
-                        Private
-                      </CustomButton>
-                    </Box>
-                    {showError("isPhoneVisible") && (
-                      <ErrorMessage>{formik.errors.isPhoneVisible}</ErrorMessage>
-                    )}
-                  </Box>
-                </Stack>
+              <FormSection>
+                <SectionTitle variant="h6">
+                  Choose Highlights for your room*
+                </SectionTitle>
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+                  {amenities.map((amenity) => (
+                    <CustomButton
+                      key={amenity.label}
+                      selected={formik.values.amenities.includes(amenity.label)}
+                      onClick={() => {
+                        const newAmenities = formik.values.amenities.includes(
+                          amenity.label
+                        )
+                          ? formik.values.amenities.filter(
+                              (a) => a !== amenity.label
+                            )
+                          : [...formik.values.amenities, amenity.label];
+                        formik.setFieldValue("amenities", newAmenities);
+                      }}
+                      startIcon={amenity.icon}
+                    >
+                      {amenity.label}
+                    </CustomButton>
+                  ))}
+                </Box>
+                {showError("amenities") && (
+                  <ErrorMessage>{formik.errors.amenities}</ErrorMessage>
+                )}
               </FormSection>
 
+              {/* Highlights Section */}
               <FormSection>
-                <SectionTitle variant="h6">Highlights *</SectionTitle>
+                <SectionTitle variant="h6">
+                  Choose Highlights for your room *
+                </SectionTitle>
                 <Box sx={{ display: "flex", flexWrap: "wrap", margin: "-4px" }}>
                   {highlights.map((highlight) => (
                     <HighlightChip
                       key={highlight}
                       selected={formik.values.highlights.includes(highlight)}
                       onClick={() => {
-                        const newHighlights = formik.values.highlights.includes(highlight)
-                          ? formik.values.highlights.filter((h) => h !== highlight)
+                        const newHighlights = formik.values.highlights.includes(
+                          highlight
+                        )
+                          ? formik.values.highlights.filter(
+                              (h) => h !== highlight
+                            )
                           : [...formik.values.highlights, highlight];
                         formik.setFieldValue("highlights", newHighlights);
                       }}
@@ -434,6 +481,51 @@ const RoomRequirementForm = () => {
                   <ErrorMessage>{formik.errors.highlights}</ErrorMessage>
                 )}
               </FormSection>
+
+              {/* Contact Number Details   */}
+              <FormSection>
+                <SectionTitle variant="h6">Additional Details</SectionTitle>
+                <Stack spacing={3}>
+                  <Box>
+                    <Typography variant="body2" sx={{ mb: 2, color: "#666" }}>
+                      <PhoneOutlinedIcon
+                        sx={{ mr: 1, verticalAlign: "middle" }}
+                      />
+                      Do you want to make your mobile visible to other users? *
+                    </Typography>
+                    <Box sx={{ display: "flex", gap: 2 }}>
+                      <CustomButton
+                        selected={formik.values.isPhoneVisible === true}
+                        onClick={() =>
+                          formik.setFieldValue("isPhoneVisible", true)
+                        }
+                        sx={{ flex: 1 }}
+                      >
+                        Yes! make it Public
+                      </CustomButton>
+                      <CustomButton
+                        selected={formik.values.isPhoneVisible === false}
+                        onClick={() =>
+                          formik.setFieldValue("isPhoneVisible", false)
+                        }
+                        sx={{ flex: 1 }}
+                      >
+                        No! make it Private
+                      </CustomButton>
+                    </Box>
+                    <Typography variant="body2" sx={{ mb: 2, color: "#666" }}>
+                      NOTE: if ypur phone is private,others can contact you only
+                      through chat*
+                    </Typography>
+                    {showError("isPhoneVisible") && (
+                      <ErrorMessage>
+                        {formik.errors.isPhoneVisible}
+                      </ErrorMessage>
+                    )}
+                  </Box>
+                </Stack>
+              </FormSection>
+              {/* Description section */}
 
               <FormSection>
                 <SectionTitle variant="h6">Description *</SectionTitle>
@@ -452,21 +544,17 @@ const RoomRequirementForm = () => {
                   }}
                   {...formik.getFieldProps("description")}
                   error={showError("description")}
-                  helperText={showError("description") && formik.errors.description}
+                  helperText={
+                    showError("description") && formik.errors.description
+                  }
                 />
               </FormSection>
+
+              {/* Submit Button Section */}
 
               <Button
                 type="submit"
                 variant="contained"
-                onClick={() => {
-                  // This will trigger validation for all fields
-                  formik.handleSubmit();
-                  // Touch all fields to show errors
-                  Object.keys(formik.values).forEach(key => {
-                    formik.setFieldTouched(key, true);
-                  });
-                }}
                 sx={{
                   bgcolor: "#00A676",
                   "&:hover": { bgcolor: "#009668" },
@@ -477,14 +565,14 @@ const RoomRequirementForm = () => {
                   boxShadow: "0 4px 12px rgba(0,166,118,0.2)",
                 }}
               >
-                Submit Requirement
+                Submit Room Details
               </Button>
 
               <Box sx={{ textAlign: "center" }}>
                 <Typography variant="body1" sx={{ color: "#666" }}>
-                  Have room & need roommate?{" "}
+                  Looking for a room?{" "}
                   <Button
-                    onClick={() => navigate('/roomdetails')}
+                    onClick={() => navigate("/roomrequirements")}
                     sx={{
                       color: "#00A676",
                       textTransform: "none",
@@ -497,7 +585,7 @@ const RoomRequirementForm = () => {
                       },
                     }}
                   >
-                    Add Room
+                    Add Requirement
                   </Button>
                 </Typography>
               </Box>
@@ -509,4 +597,4 @@ const RoomRequirementForm = () => {
   );
 };
 
-export default RoomRequirementForm;
+export default RoomDetailsForm;

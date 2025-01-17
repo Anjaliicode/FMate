@@ -13,7 +13,7 @@ const SelectionPage = () => {
   };
 
   const handleFlatSearch = () => {
-    navigate("/roomrequirements");
+    navigate("/roomdetails");
   };
 
   return (
